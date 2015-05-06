@@ -1,0 +1,139 @@
+import javax.swing.JOptionPane;
+
+public class Dice {
+
+	private int randomDiceNum;
+	private String playerAnswer;
+	private int nrageOfDice;
+	private int MidNumDice;
+	
+	
+	// constructor to initialize the computer to throw the dice with 
+	// the number of dice user wants to play with.
+	public Dice (int num)
+	{
+		randomDiceNum = ((1 + (int)( Math.random()* 6)) * num);
+	}
+	
+
+	public int DiceNum()
+	{
+		return randomDiceNum;
+	}
+	
+	// This set the range of the dice.
+	public int DiceRange (int num)
+	{
+		nrageOfDice = (6 * num);
+		return nrageOfDice;
+	}
+	
+	public int MidRage()
+	{
+		MidNumDice = ( nrageOfDice / 2);
+		return MidNumDice;
+	}
+	
+	
+	// This method decides the users guess in the midpoint correct or guess
+	// in the right or wrong range, which will earn them point or subtract their points.
+	public String DiceGame(String playerAnswer)
+	{
+		switch(playerAnswer.toLowerCase())
+		{
+		case"low":
+		{
+			if (randomDiceNum < MidNumDice)
+			{
+				int count = 0;
+				String message = String.format("You guess in the low range you earn a point! You have %d!",++count);
+				JOptionPane.showMessageDialog(null, message );
+			}
+			else
+			{
+				int count = 0;
+				String message = String.format("You guess in the wrong range you lose a point! You have %d!",--count);
+				JOptionPane.showMessageDialog(null, message );
+			}break;
+		}
+		case"high":
+		{
+			if (randomDiceNum > MidNumDice)
+			{
+				int count = 0;
+				String message = String.format("You guess in the high range you earn a point! You have %d!",++count);
+				JOptionPane.showMessageDialog(null, message );
+			}
+			else
+			{
+				int count = 0;
+				String message = String.format("You guess in the wrong range you lose a point! You have %d!",--count);
+				JOptionPane.showMessageDialog(null, message );
+			}break;
+		}
+		}
+		return playerAnswer;
+		
+		
+		
+	}
+	
+	
+	public void midRangeGuess(int input)
+	{
+		
+		if (input == MidNumDice)
+		{
+			int count = 0;
+			String message = String.format("You guess the midrage correct you earn 5 point! You have %d!",count +5);
+			JOptionPane.showMessageDialog(null, message );
+		}
+		else
+		{
+			int count = 0;
+			String message = String.format("You guess in the midrage incorrect you lose a point! You have %d!",--count);
+			JOptionPane.showMessageDialog(null, message );
+		}
+	}
+	
+//	public void point()
+//	{
+//		int count = 0; 
+//		if ( playerAnswer =="low")
+//		{
+//			while (randomDiceNum < MidNumDice)
+//			{
+//			++count;
+//			String message = String.format("You have %d!",++count);
+//			JOptionPane.showMessageDialog(null, message );
+//			}
+//			while (randomDiceNum > MidNumDice)
+//			{
+//			++count;
+//			String message = String.format("You have %d!",--count);
+//			JOptionPane.showMessageDialog(null, message );
+//			}
+//		}
+//			if ( playerAnswer =="high")
+//			{
+//				while (randomDiceNum > MidNumDice)
+//				{
+//				++count;
+//				String message = String.format("You have %d!",++count);
+//				JOptionPane.showMessageDialog(null, message );
+//				}
+//				while (randomDiceNum < MidNumDice)
+//				{
+//				++count;
+//				String message = String.format("You have %d!",--count);
+//				JOptionPane.showMessageDialog(null, message );
+//				}
+//			}
+//		
+//	}
+	
+	public String getplayerAnswer()
+	{
+		return playerAnswer;
+	}
+}

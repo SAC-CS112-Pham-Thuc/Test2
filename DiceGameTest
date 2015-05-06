@@ -1,0 +1,42 @@
+import javax.swing.JOptionPane;
+
+public class DiceGameTest {
+
+	public static void main(String[] args) 
+	{
+		String userInputUpperCase;
+		int numDice;
+		int count = 1; 
+		
+		do
+		{
+			JOptionPane.showMessageDialog(null, "Game Number: " + count); count++;
+			
+			// Ask for number of dice users with to play with.
+			String input = JOptionPane.showInputDialog("Enter the number of Dice you want to play with: ");
+			numDice = Integer.parseInt(input);
+			
+			// Create new Dice object.
+			Dice myDiceGame = new Dice(numDice);
+			myDiceGame.DiceRange(numDice);
+			
+			String player = JOptionPane.showInputDialog("Guess the Midrange of the Dice or if it in the low or high range: ");
+			myDiceGame.DiceGame(player);
+			//myDiceGame.point();
+			
+			if (player != "low" || player != "high")
+			{
+				int stringToNum = Integer.parseInt(player);
+			myDiceGame.midRangeGuess(stringToNum);
+			}
+			
+			
+			
+			String playAgain = JOptionPane.showInputDialog("Do you want to play again? ");
+			userInputUpperCase = playAgain.toUpperCase();
+		} while ((userInputUpperCase.equals("YES")));
+			JOptionPane.showMessageDialog(null, "Good Bye!");
+
+	}
+
+}
